@@ -1,0 +1,37 @@
+﻿@model UserDto
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center text-black">Login Form</h3>
+
+                    @using (Html.BeginForm("Login", "Access", FormMethod.Post))
+                    {
+                        <div class="form-group text-black mb-5">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" asp-for="Email">
+                        </div>
+                        <div class="form-group text-black mb-5">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password" asp-for="Password">
+                        </div>
+                        
+                        <div class="form-group text-black mb-5">
+                            <label for="rememberme">Remember Me:</label>
+                            <input type="checkbox" class="form-check-input" id="rememberme" asp-for="RememberMe">
+
+                        </div>
+
+                        <button type="submit" class="btn btn-dark btn-block">Login</button>
+                    }
+                    @if(ViewData["ValidateMessage"] != null)
+                    {
+                        <br/>
+                        <label class="text-danger">@ViewData["ValidateMessage"]</label>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

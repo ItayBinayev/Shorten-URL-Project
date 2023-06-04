@@ -1,0 +1,24 @@
+﻿@model List<Entry>
+
+	<h3 class="text-light">Logs for Short Url : @ViewData["shorturl"]</h3>
+
+<table class="table table-striped table-hover text-light">
+	<thead>
+		<tr>
+			<th>Public IP</th>
+			<th>Entry Date</th>
+			
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr class="text-light">
+				<td>@item.PublicIP</td>
+				<td>@item.EntryDate</td>
+				
+			</tr>
+		}
+	</tbody>
+</table>

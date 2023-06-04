@@ -1,0 +1,69 @@
+﻿@model List<URLModel>
+
+@{
+	ViewData["Title"] = "list of Short Link";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-striped table-hover text-light">
+	<thead>
+		<tr>
+			<th>Full-Url</th>
+			<th>Short-Url</th>
+			<th>Clicks Count</th>
+            <th>IP Of Connections</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr class="text-light">
+				<td>@item.FullURL</td>
+				<td>
+					<a href="@(Context.GetFullDomain()+"/w/"+@item.ShortURL)" class="btn btn-dark" target="_blank">
+						@item.ShortURL
+					</a>
+				</td>
+				<td>@item.CounterOfRequests</td>
+                <td><a asp-controller="Home" asp-action="IPList" asp-route-shortUrl="@item.ShortURL" class="btn btn-dark">IP Details</a></td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div id="piechart" class="text-warning mt-2 mb-6"></div>
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var dataArray = [['Code', 'Entries']];
+
+        @foreach (var link in Model)
+        {
+            <text>dataArray.push(['@($"{Context.GetFullDomain()}/W/{link.ShortURL}")', @link.CounterOfRequests]); </text>
+        }
+                                    var data = google.visualization.arrayToDataTable(dataArray);
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var options = {
+                backgroundColor: 'none',
+                width: 1000,
+                height: 400,
+                is3D: true,
+                legend: {
+                    textStyle: {
+                        color: 'white'
+
+                    }
+                }
+            };
+            chart.draw(data, options);
+        }
+    </script>
+
+}

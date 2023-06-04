@@ -1,0 +1,29 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+<div class="container my-5">
+	<h1 class="text-center display-1">IB Labs</h1>
+	<p class="text-center">Enter OG URL to get short!</p>
+	<div class="row justify-content-center">
+
+		<div class="d-flex justify-content-center mb-3">
+			<input type="url" class="form-control" placeholder="Enter URL To Shorten!" id="fullurlbox" />
+		</div>
+		<div class="d-flex justify-content-center mb-3">
+			<input class="form-control" placeholder="" id="shorturlbox" readonly />
+		</div>
+		<div class="d-flex justify-content-center mb-3">
+
+			<input type="button" value="Get Short URL" class="btn btn-dark mx-1" id="btnGenerate" />
+			@*			<input type="button" value="Clear URL" class="btn btn-dark mx-1" id="btnClear" />
+			*@			<button type="button" value="Clear URL" class="btn btn-dark mx-1" id="btnClear">Clear <i class="fa-solid fa-broom"></i></button>
+			@*<input type="button" value="Copy To Clipboard" class="btn btn-dark mx-1" id="btnCopy" />*@
+			<button class="btn btn-dark mx-1" id="btnCopy">Copy To Clipboard <i class="fa-solid fa-copy"></i></button>
+
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/js/pageinput.js" asp-append-version="true"></script>
+}
